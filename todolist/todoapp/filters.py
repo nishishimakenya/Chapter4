@@ -11,3 +11,4 @@ class TaskFilter(django_filters.FilterSet):
             "deadline": ["exact", "lte", "gte"],
         }
 #あまり理解できていない
+#next editting
