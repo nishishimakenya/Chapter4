@@ -25,6 +25,8 @@ class TaskListCreateView(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     filterset_class = TaskFilter  # 検索機能追加
 
+    
+
 
 class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()

@@ -10,6 +10,3 @@ class TaskFilter(django_filters.FilterSet):
             "title": ["exact", "icontains"],
             "deadline": ["exact", "lte", "gte"],
         }
-#あまり理解できていない
-#next editting
-#今日はfilters.py

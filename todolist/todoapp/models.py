@@ -15,7 +15,7 @@ class SubTask(models.Model):
     title = models.CharField(max_length=200)
     parent_task = models.ForeignKey(
         Task, on_delete=models.CASCADE, related_name="sub_tasks"
-    )  # 親タスクからsub_tasks でアクセス可能、on_deleteでこタスクも同時に削除
+    )  # 親タスクからsub_tasks でアクセス可能、on_deleteでサブタスクも同時に削除
 
     def __str__(self):
         return self.title
