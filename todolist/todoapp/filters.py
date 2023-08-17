@@ -12,3 +12,4 @@ class TaskFilter(django_filters.FilterSet):
         }
 #あまり理解できていない
 #next editting
+#今日はfilters.py を仕上げるだけ
