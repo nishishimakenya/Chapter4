@@ -1,14 +1,18 @@
 from django.test import TestCase
 from rest_framework.test import APIClient
+from rest_framework import status
+from .models import Task
 
-
-class YourAPITestCase(TestCase):
+class TaskTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        # 事前にテストデータをセットアップする場合はここで行う
 
-    def test_your_api_endpoint(self):
-        # テストコードをここに記述する
-        response = self.client.get("/your-api-endpoint/")
-        self.assertEqual(response.status_code, 200)
-        # 他のテストアサーションも追加する
+    def test_create_task(self):
+        response = self.client.post('/tasks/', {'title': 'Test Task', 'deadline': '2023-08-31'})
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_search_task_by_title(self):
+        task = Task.objects.create(title='Search Test Task', deadline='2023-08-31')
+        response = self.client.get('/tasks/', {'title': 'Search Test Task'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['results'][0]['title'], task.title)
