@@ -25,6 +25,13 @@ class TaskListCreateView(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     filterset_class = TaskFilter  # 検索機能追加
 
+    def get_queryset(self):
+        queryset = Task.objects.all()
+        title = self.request.query_params.get('title', None)
+        if title is not None:
+            queryset = queryset.filter(title__icontains=title)  # 「__icontains」を追加する
+        return queryset
+
     
 
 
