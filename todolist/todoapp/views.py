@@ -27,12 +27,10 @@ class TaskListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = Task.objects.all()
-        title = self.request.query_params.get('title', None)
+        title = self.request.query_params.get("title", None)
         if title is not None:
             queryset = queryset.filter(title__icontains=title)  # 「__icontains」を追加する
         return queryset
-
-    
 
 
 class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
